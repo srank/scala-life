@@ -1,5 +1,6 @@
 Things to do:
 
 * Unit testing - pick a framework, make it work and write some tests
-* Various code smells (see FIXMEs)
+* Various code smells (see FIXMEs) in Generation
 * UI
+* Abstract the rules out of Generation (allow for different rules)
