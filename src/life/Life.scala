@@ -1,10 +1,11 @@
 package life
 import scala.collection.mutable.HashSet
+import scala.collection.Set
 
 object Life {
 
   def main(args: Array[String]): Unit = {
-    val initialCells = new HashSet[Coordinate]
+    val initialCells = new HashSet[Coordinate] with Set[Coordinate]
     initialCells.add(new Coordinate(4, 5))
     initialCells.add(new Coordinate(5, 5))
     initialCells.add(new Coordinate(6, 5))
