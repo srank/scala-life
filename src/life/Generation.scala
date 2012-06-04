@@ -35,15 +35,18 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
    * Any live cell with two or three live neighbours lives on to the next generation.
    * Any live cell with more than three live neighbours dies, as if by overcrowding.
    * Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+   * 
+   * NB: numberOfNeighbours is off by one if the current cell is alive
    */
   
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
+    // FIXME: this line looks too verbose to be correct...
     val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
-    if (cells.contains(cell) && numberOfNeighbours < 2) {
+    if (cells.contains(cell) && numberOfNeighbours -1 < 2) {
       false
-    } else if (cells.contains(cell) && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
+    } else if (cells.contains(cell) && (numberOfNeighbours - 1  == 2 || numberOfNeighbours - 1 == 3)){
       true
-    } else if (cells.contains(cell) && numberOfNeighbours > 3) {
+    } else if (cells.contains(cell) && numberOfNeighbours - 1 > 3) {
       false
     } else if (!cells.contains(cell) && numberOfNeighbours == 3){
       true
@@ -51,7 +54,14 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
       false
     }
   }
+  
+  def nextGenerationsLivingCells = {
+      for (cell <- cellsToConsider;
+      if cellIsAliveInNextGeneration(cell)) 
+        yield cell
+  }
+  
   def nextGeneration(): Generation = {
-    new Generation(width, height, cells)
+    new Generation(width, height, nextGenerationsLivingCells)
   }
 }

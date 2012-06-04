@@ -16,5 +16,9 @@ object Life {
     println(new Coordinate(2,2).getNeighbours(5, 5))
     
     println(g0.cellsToConsider);
+    println(g0.nextGenerationsLivingCells)
+    
+    println(g0.nextGeneration)
+    println(g0.nextGeneration.nextGeneration)
   }
 }
