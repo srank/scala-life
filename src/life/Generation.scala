@@ -20,6 +20,14 @@ class Generation(width: Int, height: Int, cells: HashSet[Coordinate]) {
     output;
   }
   
+  def cellsToConsider = {
+    // there's probably a more idiomatic way of doing this
+    var result = new HashSet[Coordinate]()
+    for (cell <- cells)
+      result = result ++ cell.getNeighbours(width, height)
+    result
+  }
+  
   def nextGeneration(): Generation = {
     new Generation(width, height, cells)
   }

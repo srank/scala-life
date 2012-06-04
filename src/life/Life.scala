@@ -13,5 +13,7 @@ object Life {
     
     println(new Coordinate(0,0).getNeighbours(5, 5))
     println(new Coordinate(2,2).getNeighbours(5, 5))
+    
+    println(g0.cellsToConsider);
   }
 }
