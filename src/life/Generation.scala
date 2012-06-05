@@ -26,7 +26,7 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
     // FIXME: there's probably a more idiomatic way of doing this
     var result = new HashSet[Coordinate]()
     for (cell <- cells)
-      result = result ++ cell.getNeighbours(width, height)
+      result = result ++ cell.getNeighbours(width, height) + cell
     result
   }
   
@@ -42,11 +42,11 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
     // FIXME: this line looks too verbose to be correct...
     val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
-    if (cells.contains(cell) && numberOfNeighbours -1 < 2) {
+    if (cells.contains(cell) && numberOfNeighbours < 2) {
       false
-    } else if (cells.contains(cell) && (numberOfNeighbours - 1  == 2 || numberOfNeighbours - 1 == 3)){
+    } else if (cells.contains(cell) && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
       true
-    } else if (cells.contains(cell) && numberOfNeighbours - 1 > 3) {
+    } else if (cells.contains(cell) && numberOfNeighbours > 3) {
       false
     } else if (!cells.contains(cell) && numberOfNeighbours == 3){
       true
