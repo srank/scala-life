@@ -42,13 +42,14 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
     // FIXME: this line looks too verbose to be correct...
     val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
-    if (cells.contains(cell) && numberOfNeighbours < 2) {
+    val cellIsAlive  = cells.contains(cell) 
+    if (cellIsAlive && numberOfNeighbours < 2) {
       false
-    } else if (cells.contains(cell) && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
+    } else if (cellIsAlive && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
       true
-    } else if (cells.contains(cell) && numberOfNeighbours > 3) {
+    } else if (cellIsAlive && numberOfNeighbours > 3) {
       false
-    } else if (!cells.contains(cell) && numberOfNeighbours == 3){
+    } else if (!cellIsAlive && numberOfNeighbours == 3){
       true
     } else {
       false
