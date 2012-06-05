@@ -36,7 +36,6 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
    * Any live cell with more than three live neighbours dies, as if by overcrowding.
    * Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
    * 
-   * NB: numberOfNeighbours is off by one if the current cell is alive
    */
   
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
