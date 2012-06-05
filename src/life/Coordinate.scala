@@ -2,7 +2,9 @@ package life
 
 class Coordinate(val x: Int, val y: Int) {
   override def toString = {"(" + x + ", " + y + ")"}
+  
   override def hashCode = 11 + x*101 + y;
+  
   override def equals(other: Any) = {
     other match {
       case that: Coordinate => this.x == that.x && this.y == that.y
