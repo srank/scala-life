@@ -1,6 +1,6 @@
 package life.tests
 
-//import org.scalatest.Suite
+import org.scalatest.Suite
 
 class CoordinateTests {
   def sample() {
