@@ -4,3 +4,4 @@ Things to do:
 * Various code smells (see FIXMEs) in Generation
 * UI
 * Abstract the rules out of Generation (allow for different rules)
+* Figure out how to get scalatest working with Eclipse (where is the jar file kept?)
