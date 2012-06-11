@@ -1,16 +1,16 @@
 package life
 
-import org.scalatest.Suite
+import org.scalatest.FunSuite
 
-class CoordinateTests extends Suite {
+class CoordinateTests extends FunSuite {
   val coordinate = new Coordinate(3, 5)
 
-  def testCoordsAreDecomposable {
-    assert(coordinate.x == 3)
-    assert(coordinate.y == 5)
+  test("Coordinates are decomposable") {
+    assert(coordinate.x === 3)
+    assert(coordinate.y === 5)
   }
   
-  def testSimpleCoordinateNeighbours {
+  test("Can calculate the neighbours of a coordinate which isn't on the edge") {
     val neighbours = coordinate.getNeighbours(10,10)
     
     assert(neighbours.length == 8)
@@ -24,7 +24,7 @@ class CoordinateTests extends Suite {
     
   }
   
-  def testWrappingCoordinateNeighbours {
+  test("Can calculate the neighbours of a coordinate which is on the edge") {
     val neighbours = coordinate.getNeighbours(3,5)
     
     assert(neighbours.length == 8)
