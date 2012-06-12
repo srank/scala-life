@@ -3,9 +3,9 @@ import scala.collection.mutable.HashSet
 import scala.collection.Set
 
 class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
-  val w = width
-  val h = height
-  val c = cells
+  private val w = width
+  private val h = height
+  private val c = cells
   
   override def toString = {
     // FIXME: this doesn't feel very functional in style
@@ -32,9 +32,9 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
   override def equals(other: Any):Boolean = {
     other match {
       case that: Generation => (that canEqual this) && 
-          (this.width == that.w) && (this.height == that.h) &&
-          (this.cells == that.c)
-          
+                               (this.width == that.w) && 
+                               (this.height == that.h) &&
+                               (this.cells == that.c)
       case _ => false
     }
   }

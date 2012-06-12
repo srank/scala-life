@@ -6,7 +6,14 @@ import scala.collection.Set
 
 class GenerationTests extends FunSuite {
   test("cellsToConsider gets all neighbours of a cell") {
-
+    val cells = new HashSet[Coordinate] with Set[Coordinate]
+    cells.add(new Coordinate(2,2))
+    val generation = new Generation(8, 8, cells)
+    val cellsToConsider = generation.cellsToConsider
+    val expectedCells = Set(new Coordinate(1,1), new Coordinate(1,2), new Coordinate(1,3),
+                            new Coordinate(2,1), new Coordinate(2,2), new Coordinate(2,3), 
+                            new Coordinate(3,1), new Coordinate(3,2), new Coordinate(3,3))
+    assert(expectedCells === cellsToConsider)
   }
   
   test("cellsToConsider includes all cells that are currently live") {
