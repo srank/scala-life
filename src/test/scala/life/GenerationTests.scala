@@ -10,14 +10,25 @@ class GenerationTests extends FunSuite {
     cells.add(new Coordinate(2,2))
     val generation = new Generation(8, 8, cells)
     val cellsToConsider = generation.cellsToConsider
+    assert(cellsToConsider.size === 9)
     val expectedCells = Set(new Coordinate(1,1), new Coordinate(1,2), new Coordinate(1,3),
                             new Coordinate(2,1), new Coordinate(2,2), new Coordinate(2,3), 
                             new Coordinate(3,1), new Coordinate(3,2), new Coordinate(3,3))
     assert(expectedCells === cellsToConsider)
   }
   
-  test("cellsToConsider includes all cells that are currently live") {
-    
+  test("cellsToConsider includes neighbours of cells that are on the edge") {
+    val cells = new HashSet[Coordinate] with Set[Coordinate]
+    cells.add(new Coordinate(0,0))
+    val generation = new Generation(8, 8, cells)
+    val cellsToConsider = generation.cellsToConsider
+    assert(cellsToConsider.size === 9)
+    val expectedCells = Set(new Coordinate(7,7), new Coordinate(7,0), new Coordinate(7,1),
+                            new Coordinate(0,7), new Coordinate(0,0), new Coordinate(0,1), 
+                            new Coordinate(1,7), new Coordinate(1,0), new Coordinate(1,1))
+    assert(expectedCells === cellsToConsider)
+
+
   }
   
   test("Grid with two blinkers has period two") {
