@@ -13,7 +13,7 @@ class GenerationTests extends FunSuite {
     
   }
   
-  test("") {
+  test("Grid with two blinkers has period two") {
     val initialCells = new HashSet[Coordinate] with Set[Coordinate]
     initialCells.add(new Coordinate(4, 5))
     initialCells.add(new Coordinate(5, 5))
@@ -28,6 +28,8 @@ class GenerationTests extends FunSuite {
     assert(g1 != g0)
     val g2 = g1.nextGeneration
     assert(g0 === g2)
+    val g3 = g2.nextGeneration
+    assert(g3 === g1)
 
   }
 }
