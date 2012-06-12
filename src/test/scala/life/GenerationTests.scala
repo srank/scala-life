@@ -78,6 +78,20 @@ class GenerationTests extends FunSuite {
     assert(g0 === g2)
     val g3 = g2.nextGeneration
     assert(g3 === g1)
+  }
+  
+  test("Blocks are solid and unmoving") {
+    val initialCells = new HashSet[Coordinate] with Set[Coordinate]
+    initialCells.add(new Coordinate(4, 4))
+    initialCells.add(new Coordinate(4, 5))
+    initialCells.add(new Coordinate(5, 4))
+    initialCells.add(new Coordinate(5, 5))
 
+    val g0 = new Generation(10, 10, initialCells)
+    val g1 = g0.nextGeneration
+    assert(g1 === g0)
+
+    val g2 = g1.nextGeneration
+    assert(g2 === g0)
   }
 }

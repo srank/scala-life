@@ -56,18 +56,12 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
     // FIXME: this line looks too verbose to be correct...
     val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
     val cellIsAlive  = cells.contains(cell)
-    // FIXME: can we use pattern matching here?
-    if (cellIsAlive && numberOfNeighbours < 2) {
-      false
-    } else if (cellIsAlive && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
-      true
-    } else if (cellIsAlive && numberOfNeighbours > 3) {
-      false
-    } else if (!cellIsAlive && numberOfNeighbours == 3){
-      true
-    } else {
-      false
-    }
+    
+    (cellIsAlive, numberOfNeighbours) match {
+      case (true, 2) => true
+      case (_, 3) => true
+      case _ => false
+    } 
   }
   
   def nextGenerationsLivingCells = {
