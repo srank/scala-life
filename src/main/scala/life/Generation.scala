@@ -3,6 +3,9 @@ import scala.collection.mutable.HashSet
 import scala.collection.Set
 
 class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
+  val w = width
+  val h = height
+  val c = cells
   
   override def toString = {
     // FIXME: this doesn't feel very functional in style
@@ -22,8 +25,23 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
     output;
   }
   
+  def canEqual(other: Any):Boolean = {
+    other.isInstanceOf[Generation]
+  }
+  
+  override def equals(other: Any):Boolean = {
+    other match {
+      case that: Generation => (that canEqual this) && 
+          (this.width == that.w) && (this.height == that.h) &&
+          (this.cells == that.c)
+          
+      case _ => false
+    }
+  }
+  
   def cellsToConsider = {
     // FIXME: there's probably a more idiomatic way of doing this
+    // maybe using flatten
     var result = new HashSet[Coordinate]()
     for (cell <- cells)
       result = result ++ cell.getNeighbours(width, height) + cell
@@ -39,7 +57,8 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
     // FIXME: this line looks too verbose to be correct...
     val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
-    val cellIsAlive  = cells.contains(cell) 
+    val cellIsAlive  = cells.contains(cell)
+    // FIXME: can we use pattern matching here?
     if (cellIsAlive && numberOfNeighbours < 2) {
       false
     } else if (cellIsAlive && (numberOfNeighbours == 2 || numberOfNeighbours == 3)){
