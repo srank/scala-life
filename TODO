@@ -1,6 +1,6 @@
 Things to do:
 
-* Unit testing: write some tests for Generation
 * Various code smells (see FIXMEs) in Generation
+* Make Coordinate able to be created without new? See "Case Classes and Pattern Matching" in the Scala book
 * UI
 * Abstract the rules out of Generation (allow for different rules)
