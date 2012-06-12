@@ -40,12 +40,10 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
   }
   
   def cellsToConsider = {
-    // FIXME: there's probably a more idiomatic way of doing this
-    // maybe using flatten
-    var result = new HashSet[Coordinate]()
-    for (cell <- cells)
-      result = result ++ cell.getNeighbours(width, height) + cell
-    result
+    val allNeighbours = for (cell <- cells)
+      yield cell.getNeighbours(width, height)
+      
+    (allNeighbours + cells.toIndexedSeq).flatten
   }
   
   /* Rules:
