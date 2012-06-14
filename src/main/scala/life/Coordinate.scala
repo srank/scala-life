@@ -19,3 +19,7 @@ class Coordinate(val x: Int, val y: Int) {
     yield new Coordinate((x + xOffset + width) % width, (y + yOffset + width) % height)
   }
 }
+
+object Coordinate {
+  def apply(x: Int, y: Int) = new Coordinate(x,y)
+}
