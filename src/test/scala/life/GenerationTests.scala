@@ -30,9 +30,7 @@ class GenerationTests extends FunSuite {
   }
   
   test("cellsToConsider gets all neighbours of all living cells") {
-    val cells = new HashSet[Coordinate] with Set[Coordinate]
-    cells.add(new Coordinate(2,2))
-    cells.add(new Coordinate(5,5))
+    val cells = Set(new Coordinate(2,2), new Coordinate(5,5))
     val generation = new Generation(8, 8, cells)
     val cellsToConsider = generation.cellsToConsider
     assert(cellsToConsider.size === 18)
@@ -45,10 +43,8 @@ class GenerationTests extends FunSuite {
     assert(expectedCells === cellsToConsider)
   }
   
-    test("cellsToConsider gets all neighbours of all living cells and handles overlap") {
-    val cells = new HashSet[Coordinate] with Set[Coordinate]
-    cells.add(new Coordinate(2,2))
-    cells.add(new Coordinate(3,3))
+  test("cellsToConsider gets all neighbours of all living cells and handles overlap") {
+    val cells = Set(new Coordinate(2,2), new Coordinate(3,3))
     val generation = new Generation(8, 8, cells)
     val cellsToConsider = generation.cellsToConsider
     assert(cellsToConsider.size === 14)
@@ -62,14 +58,14 @@ class GenerationTests extends FunSuite {
   }
   
   test("Grid with two blinkers has period two") {
-    val initialCells = new HashSet[Coordinate] with Set[Coordinate]
-    initialCells.add(new Coordinate(4, 5))
-    initialCells.add(new Coordinate(5, 5))
-    initialCells.add(new Coordinate(6, 5))
+    var initialCells = Set[Coordinate]()
+    initialCells += (new Coordinate(4, 5))
+    initialCells += (new Coordinate(5, 5))
+    initialCells += (new Coordinate(6, 5))
     
-    initialCells.add(new Coordinate(8, 0))
-    initialCells.add(new Coordinate(9, 0))
-    initialCells.add(new Coordinate(0, 0))
+    initialCells += (new Coordinate(8, 0))
+    initialCells += (new Coordinate(9, 0))
+    initialCells += (new Coordinate(0, 0))
     
     val g0 = new Generation(10, 10, initialCells)
     val g1 = g0.nextGeneration
@@ -81,11 +77,11 @@ class GenerationTests extends FunSuite {
   }
   
   test("Blocks are solid and unmoving") {
-    val initialCells = new HashSet[Coordinate] with Set[Coordinate]
-    initialCells.add(new Coordinate(4, 4))
-    initialCells.add(new Coordinate(4, 5))
-    initialCells.add(new Coordinate(5, 4))
-    initialCells.add(new Coordinate(5, 5))
+    var initialCells = Set[Coordinate]()
+    initialCells += (new Coordinate(4, 4))
+    initialCells += (new Coordinate(4, 5))
+    initialCells += (new Coordinate(5, 4))
+    initialCells += (new Coordinate(5, 5))
 
     val g0 = new Generation(10, 10, initialCells)
     val g1 = g0.nextGeneration
