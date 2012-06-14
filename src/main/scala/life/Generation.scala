@@ -54,7 +54,7 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
    */
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
     // FIXME: this line looks too verbose to be correct...
-    val numberOfNeighbours = cell.getNeighbours(width, height).toIndexedSeq.intersect(cells.toIndexedSeq).length
+    val numberOfNeighbours = cell.getNeighbours(width, height).intersect(cells.toIndexedSeq).length
     val cellIsAlive  = cells.contains(cell)
     
     (cellIsAlive, numberOfNeighbours) match {
