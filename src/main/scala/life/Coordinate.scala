@@ -13,9 +13,9 @@ class Coordinate(val x: Int, val y: Int) {
   }
   
   def getNeighbours(width:Int, height:Int) = {
-    for (xOffset <- -1 to 1;
-         yOffset <- -1 to 1;
-         if (xOffset != 0 || yOffset != 0))
+    for {xOffset <- -1 to 1
+         yOffset <- -1 to 1
+         if (xOffset != 0 || yOffset != 0)}
     yield Coordinate((x + xOffset + width) % width, (y + yOffset + width) % height)
   }
 }

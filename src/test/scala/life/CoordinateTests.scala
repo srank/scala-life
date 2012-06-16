@@ -17,10 +17,9 @@ class CoordinateTests extends FunSuite {
     
     val expectedNeighbours = Array((2, 4), (2, 5), (2, 6), (3, 4), (3, 6), (4, 4), (4, 5), (4, 6))
     
-    for ((x, y) <- expectedNeighbours;
-         n = Coordinate(x, y)) {
+    for {(x, y) <- expectedNeighbours
+         n = Coordinate(x, y)} 
       assert(neighbours.contains(n), "Coordinate " + n + "not found in " + neighbours)
-    }
     
   }
   
@@ -31,9 +30,8 @@ class CoordinateTests extends FunSuite {
     
     val expectedNeighbours = Array((2, 2), (2, 3), (2, 4), (0, 2), (0, 4), (1, 2), (1, 3), (1, 4))
     
-    for ((x, y) <- expectedNeighbours;
-         n = Coordinate(x, y)) {
+    for {(x, y) <- expectedNeighbours
+         n = Coordinate(x, y)}
       assert(neighbours.contains(n), "Coordinate " + n + "not found in " + neighbours)
-    }
   }
 }
