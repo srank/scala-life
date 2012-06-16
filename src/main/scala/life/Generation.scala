@@ -3,6 +3,9 @@ import scala.collection.mutable.HashSet
 import scala.collection.Set
 
 class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
+  require(width > 0)
+  require(height > 0)
+  
   private val w = width
   private val h = height
   private val c = cells

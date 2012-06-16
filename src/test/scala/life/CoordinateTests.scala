@@ -10,6 +10,20 @@ class CoordinateTests extends FunSuite {
     assert(coordinate.y === 5)
   }
   
+  test("Coordinates must have positive x and y") {
+    intercept[IllegalArgumentException] {
+      val badCoordinate = Coordinate(-1, 2);
+    }
+    
+    intercept[IllegalArgumentException] {
+      val badCoordinate = Coordinate(1, -2);
+    }
+    
+    intercept[IllegalArgumentException] {
+      val badCoordinate = Coordinate(-1, -2);
+    }
+  }
+  
   test("Can calculate the neighbours of a coordinate which isn't on the edge") {
     val neighbours = coordinate.getNeighbours(10,10)
     

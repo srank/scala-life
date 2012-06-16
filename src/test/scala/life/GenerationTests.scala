@@ -5,6 +5,24 @@ import scala.collection.mutable.HashSet
 import scala.collection.Set
 
 class GenerationTests extends FunSuite {
+  test("Generations must be of positive dimensions") {
+    intercept[IllegalArgumentException] {
+      val badGeneration = new Generation(-1, 2, Set());
+    }
+    
+    intercept[IllegalArgumentException] {
+      val badGeneration = new Generation(0, 2, Set());
+    }
+    
+    intercept[IllegalArgumentException] {
+      val badGeneration = new Generation(1, 0, Set());
+    }
+    
+    intercept[IllegalArgumentException] {
+      val badGeneration = new Generation(2, -2, Set());
+    }
+  }
+  
   test("cellsToConsider gets all neighbours of a cell") {
     val cells = Set(Coordinate(2,2))
     val generation = new Generation(8, 8, cells)

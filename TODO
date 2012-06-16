@@ -3,4 +3,3 @@ Things to do:
 * Various code smells (see FIXMEs) in Generation
 * UI
 * Abstract the rules out of Generation (allow for different rules)
-* Use require to enforce preconditions on (eg) Coordinates (x and y both >= 0)
