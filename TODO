@@ -1,5 +1,9 @@
 Things to do:
 
 * Various code smells (see FIXMEs) in Generation
-* UI
+* UI:
+ ** show a generation
+ ** allow back-and-forth between generations (ie, replay history)
+ ** use actors to generate future generations ahead of the UI
 * Abstract the rules out of Generation (allow for different rules)
+* Could Coordinate be a parameterised class, to allow for more sophisticated automata?
