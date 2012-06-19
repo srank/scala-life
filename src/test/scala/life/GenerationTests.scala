@@ -1,8 +1,6 @@
 package life
 
 import org.scalatest.FunSuite
-import scala.collection.mutable.HashSet
-import scala.collection.Set
 
 class GenerationTests extends FunSuite {
   test("Generations must be of positive dimensions") {

@@ -1,6 +1,4 @@
 package life
-import scala.collection.mutable.HashSet
-import scala.collection.Set
 
 class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
   require(width > 0)

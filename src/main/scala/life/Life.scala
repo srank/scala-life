@@ -14,7 +14,7 @@ object Life {
     initialCells.add(Coordinate(9, 0))
     initialCells.add(Coordinate(0, 0))
     
-    val g0 = new Generation(10, 10, initialCells)
+    val g0 = new Generation(10, 10, initialCells.toSet)
     println("Generation 0")
     println(g0.toString())
     
