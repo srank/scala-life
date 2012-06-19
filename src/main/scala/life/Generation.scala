@@ -2,13 +2,13 @@ package life
 import scala.collection.mutable.HashSet
 import scala.collection.Set
 
-class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
+class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
   require(width > 0)
   require(height > 0)
   
   private val w = width
   private val h = height
-  private val c = cells
+  private val c = livingCells
   
   override def toString = {
     // FIXME: this doesn't feel very functional in style
@@ -16,7 +16,7 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
     for (y <- 0 to height - 1;
          x <- 0 to width - 1;
          coord = new Coordinate(x, y)) {
-      if (cells.contains(coord)) {
+      if (livingCells(coord)) {
         output += "*" 
       } else {
         output += "-"
@@ -37,16 +37,16 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
       case that: Generation => (that canEqual this) && 
                                (this.width == that.w) && 
                                (this.height == that.h) &&
-                               (this.cells == that.c)
+                               (this.livingCells == that.c)
       case _ => false
     }
   }
   
   def cellsToConsider = {
-    val allNeighbours = for (cell <- cells)
+    val allNeighbours = for (cell <- livingCells)
       yield cell.getNeighbours(width, height)
       
-    (allNeighbours + cells.toIndexedSeq).flatten
+    (allNeighbours + livingCells.toIndexedSeq).flatten
   }
   
   /* Rules:
@@ -57,8 +57,8 @@ class Generation(width: Int, height: Int, cells: Set[Coordinate]) {
    */
   def cellIsAliveInNextGeneration(cell: Coordinate): Boolean = {
     // FIXME: this line looks too verbose to be correct...
-    val numberOfNeighbours = cell.getNeighbours(width, height).intersect(cells.toIndexedSeq).length
-    val cellIsAlive  = cells.contains(cell)
+    val numberOfNeighbours = cell.getNeighbours(width, height).intersect(livingCells.toIndexedSeq).length
+    val cellIsAlive = livingCells(cell)
     
     (cellIsAlive, numberOfNeighbours) match {
       case (true, 2) => true
