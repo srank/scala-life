@@ -8,12 +8,12 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
   private val h = height
   private val c = livingCells
   
-  override def toString = {
+  override lazy val toString = {
     // FIXME: this doesn't feel very functional in style
     var output: String = ""
     for (y <- 0 to height - 1;
          x <- 0 to width - 1;
-         coord = new Coordinate(x, y)) {
+         coord = Coordinate(x, y)) {
       if (livingCells(coord)) {
         output += "*" 
       } else {
@@ -40,7 +40,7 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
     }
   }
   
-  def cellsToConsider = {
+  lazy val cellsToConsider = {
     val allNeighbours = for (cell <- livingCells)
       yield cell.getNeighbours(width, height)
       
@@ -65,13 +65,13 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
     } 
   }
   
-  def nextGenerationsLivingCells = {
+  lazy val nextGenerationsLivingCells = {
       for (cell <- cellsToConsider;
       if cellIsAliveInNextGeneration(cell)) 
         yield cell
   }
   
-  def nextGeneration(): Generation = {
+  lazy val nextGeneration: Generation = {
     new Generation(width, height, nextGenerationsLivingCells)
   }
 }

@@ -16,7 +16,7 @@ object Life {
     
     val g0 = new Generation(10, 10, initialCells.toSet)
     println("Generation 0")
-    println(g0.toString())
+    println(g0.toString)
     
     println(Coordinate(0,0).getNeighbours(5, 5))
     println(Coordinate(2,2).getNeighbours(5, 5))
