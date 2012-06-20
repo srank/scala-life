@@ -4,9 +4,9 @@ class Coordinate(val x: Int, val y: Int) {
   require(x >= 0);
   require(y >= 0);
   
-  override def toString = "(" + x + ", " + y + ")"
+  override lazy val toString = "(" + x + ", " + y + ")"
   
-  override def hashCode = 11 + x*101 + y;
+  override lazy val hashCode = 11 + x*101 + y;
 
   override def equals(other: Any) = {
     other match {
