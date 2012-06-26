@@ -11,9 +11,9 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
   override lazy val toString = {
     // FIXME: this doesn't feel very functional in style
     var output: String = ""
-    for (y <- 0 to height - 1;
-         x <- 0 to width - 1;
-         coord = Coordinate(x, y)) {
+    for {y <- 0 until height
+         x <- 0 until width
+         coord = Coordinate(x, y)} {
       if (livingCells(coord)) {
         output += "*" 
       } else {
@@ -74,4 +74,6 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
   lazy val nextGeneration: Generation = {
     new Generation(width, height, nextGenerationsLivingCells)
   }
+  
+  def liveCells(x: Int, y: Int) = livingCells(Coordinate(x, y))
 }
