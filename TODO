@@ -7,3 +7,4 @@ Things to do:
  ** use actors to generate future generations ahead of the UI
 * Abstract the rules out of Generation (allow for different rules)
 * Could Coordinate be a parameterised class, to allow for more sophisticated automata?
+* Load and save (may be an opportunity to use a parser on savefiles)
