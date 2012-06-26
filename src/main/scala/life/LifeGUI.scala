@@ -21,6 +21,7 @@ class LifeGUI(val height: Int, val width: Int, val g: Generation) extends Scroll
     gridColor = java.awt.Color.lightGray
     
     override def rendererComponent(isSelected: Boolean, focused: Boolean, row: Int, column: Int): Component = {
+      // FIXME: this is too much coupling
       if (g.liveCells(row, column)) {
         new Label("x")
       } else {

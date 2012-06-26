@@ -75,5 +75,6 @@ class Generation(width: Int, height: Int, livingCells: Set[Coordinate]) {
     new Generation(width, height, nextGenerationsLivingCells)
   }
   
+  // FIXME: this method probably shouldn't exist
   def liveCells(x: Int, y: Int) = livingCells(Coordinate(x, y))
 }
