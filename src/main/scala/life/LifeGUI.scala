@@ -4,11 +4,17 @@ import scala.swing._
 
 object FirstSwingApp extends SimpleSwingApplication {
   def top = new MainFrame {
-    val cells = Set(Coordinate(2,2))
-    val g = new Generation(10, 10, cells)
+    val cells = Set(Coordinate(2,2), Coordinate(2,3), Coordinate(2,4))
+        val g = new Generation(10, 10, cells)
     title = "Scala life"
-    contents = new LifeGUI(10,10, g)
-    
+    contents = new BoxPanel(Orientation.Vertical) {
+      val gui = new LifeGUI(10,10, g)
+      contents += gui
+      val button = new Button {
+        text = "next"
+      }
+      contents += button
+    }
   }
 }
 
