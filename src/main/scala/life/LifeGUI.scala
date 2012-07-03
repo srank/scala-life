@@ -26,7 +26,7 @@ object FirstSwingApp extends SimpleSwingApplication {
       case ButtonClicked(b) =>
         generationNumber += 1
         label.text = generationNumber.toString()
-        gui.g = gui.g.nextGeneration
+        gui.nextGeneration
         gui.repaint()
     }
   }
@@ -48,6 +48,10 @@ class LifeGUI(val height: Int, val width: Int, var g: Generation) extends Scroll
         new Label(" ")
       }
     }
+  }
+  
+  def nextGeneration() {
+    g = g.nextGeneration
   }
   
   viewportView = table
